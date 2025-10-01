@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Impressive Notes App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Marked.js for Markdown support -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="stats-dashboard" id="statsDashboard" style="max-width:900px;margin:0 auto 18px auto;padding:12px 0 0 0;"></div>
+  <button class="dark-toggle" title="Toggle dark mode" id="darkModeBtn">🌙</button>
+  <div class="container">
+    <h1>📝 Impressive Notes App</h1>
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search notes...">
+      <select id="folderFilter">
+        <option value="">All Folders</option>
+      </select>
+      <select id="tagFilter">
+        <option value="">All Tags</option>
+      </select>
+      <select id="sortSelect">
+        <option value="created-desc">Newest</option>
+        <option value="created-asc">Oldest</option>
+        <option value="title-asc">Title A-Z</option>
+        <option value="title-desc">Title Z-A</option>
+        <option value="tag-asc">Tag A-Z</option>
+        <option value="tag-desc">Tag Z-A</option>
+      </select>
+      <select id="fontSizeSelect">
+        <option value="1em">Font: Medium</option>
+        <option value="0.9em">Font: Small</option>
+        <option value="1.2em">Font: Large</option>
+      </select>
+      <button id="bulkDeleteBtn" disabled>🗑️ Bulk Delete</button>
+      <button id="bulkDownloadBtn" disabled>💾 Bulk Download</button>
+      <button id="addNoteBtn">+ Add Note</button>
+      <button class="archive-toggle" id="archiveToggleBtn">📁 Archive</button>
+    </div>
+    <div class="archive-label" id="archiveLabel" style="display:none;">Archived Notes</div>
+    <div class="notes-list" id="notesList"></div>
+  </div>
+
+  <!-- Snackbar for Undo Delete -->
+  <div class="snackbar" id="snackbar">
+    <span id="snackbarMsg"></span>
+    <button id="undoBtn">Undo</button>
+  </div>
+
+  <!-- Modal for Add/Edit Note -->
+  <div class="modal-bg" id="modalBg" style="display:none;">
+    <div class="modal" id="modal">
+      <h2 id="modalTitle">Add Note</h2>
+      <form id="noteForm" autocomplete="off">
+        <label for="noteTitle">Title</label>
+        <input type="text" id="noteTitle" maxlength="60" required>
+        <label for="noteContent">Content</label>
+        <textarea id="noteContent" maxlength="1000" required></textarea>
+        <div class="char-count" id="charCount"></div>
+        <div class="markdown-preview" id="markdownPreview"></div>
+        <div class="emoji-picker" id="emojiPicker"></div>
+        <label for="noteTag">Tag</label>
+        <select id="noteTag">
+          <option value="">None</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Study">Study</option>
+        </select>
+        <label for="noteColor">Color</label>
+        <input type="color" id="noteColor" value="#fffbe7" style="width:40px; height:28px; border:none; background:none;">
+        <div class="modal-actions">
+          <button type="submit" id="saveNoteBtn">Save</button>
+          <button type="button" class="cancel" id="cancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for Lock/Unlock -->
+  <div class="modal-bg" id="lockModalBg" style="display:none;">
+    <div class="modal" id="lockModal">
+      <h2 id="lockModalTitle">Enter PIN to Unlock</h2>
+      <form id="lockForm" autocomplete="off">
+        <label for="lockPinInput">PIN</label>
+        <input type="password" id="lockPinInput" maxlength="6" required>
+        <div class="modal-actions">
+          <button type="submit" id="unlockBtn">Unlock</button>
+          <button type="button" class="cancel" id="lockCancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
