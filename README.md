@@ -15,7 +15,7 @@ It also includes a **PIN lock system** to ensure privacy.
 - Responsive and minimal design
 
 ## 🛠️ Tech Stack
-- **Frontend:** HTML, CSS, JavaScript (React / VanillaJS depending on your build)
+- **Frontend:** HTML, CSS, JavaScript (VanillaJS)
 - **Storage:** LocalStorage (Browser-based)
 - **Deployment:** Netlify
 
